@@ -2,12 +2,12 @@
 
 > QuickSearch Component for [Ink 2](https://github.com/vadimdemedes/ink), [demo on repl.it](https://repl.it/@johnosullivan1/ink-quicksearch-input)
 
-Forked from [@aicioara](https://github.com/aicioara)'s original [`ink-quicksearch`](https://github.com/aicioara/ink-quicksearch) component to upgrade it to Ink 2.  Big thanks to him for laying out the original logic in v1!  If you are looking for a component that works with Ink v1, that's where to go.  This re-write uses modern React (e.g. function components and hooks), and it is also in Typescript, improving the developer experience.  The only behavioral difference is that this component always filters out items which do not match the query.  Note that the demo runs a good bit slower than it does in an actual terminal; there's some uncanny-valley lag which is not present during normal use.
+Forked from [@eximchain](https://github.com/Eximchain)'s fork [`ink-quicksearch`](https://github.com/Eximchain/ink-quicksearch-input) of [@aicioara](https://github.com/aicioara) [`ink-quicksearch`](https://github.com/aicioara/ink-quicksearch) and component to upgrade it to Ink 3 on top of the original Ink 2 support.  Big thanks to both of them for laying out the original logic in v1 and v2! If you are looking for a component that works with Ink v1, that's where to go.  This re-write uses modern React (e.g. function components and hooks), and it is also in Typescript, improving the developer experience.  The only behavioral difference is that this component always filters out items which do not match the query.  Note that the demo runs a good bit slower than it does in an actual terminal; there's some uncanny-valley lag which is not present during normal use.
 
 ## Install
 
 ```
-$ npm install ink-quicksearch-input
+$ npm install ink-quicksearch-input-3
 ```
 
 ## Quickstart
@@ -23,30 +23,29 @@ npm start
 
 ```jsx
 import React, { useState } from 'react';
-import { render, Text } from 'ink';
-import { QuickSearchInput } from 'ink-quicksearch-input';
+import { render, Box, Text } from 'ink';
+import QuickSearchInput from 'ink-quicksearch-input-3';
 
 const Demo = (props) => {
-    const [result, setResult] = useState('');
-    return (
-        <>
-        <Text>The user selected {result}.</Text>
-        {'\n'}
-        <QuickSearchInput 
-            items={[
-                {value: 1, label: 'Animal'},
-                {value: 3, label: 'Antilope'},
-                {value: 2, label: 'Animation'},
-                {value: 0, label: 'Animate'},
-                {value: 4, label: 'Arizona'},
-                {value: 5, label: 'Aria'},
-                {value: 6, label: 'Arid'},
-                // ...
-            ]}
-            onSelect={(item) => setResult(item.label)} />
-        </>
-    )
-}
+  const [result, setResult] = useState('');
+  return (
+    <Box>
+      <Text>The user selected {result}.</Text>
+      <QuickSearchInput 
+        items={[
+          {value: 1, label: 'Animal'},
+          {value: 3, label: 'Antilope'},
+          {value: 2, label: 'Animation'},
+          {value: 0, label: 'Animate'},
+          {value: 4, label: 'Arizona'},
+          {value: 5, label: 'Aria'},
+          {value: 6, label: 'Arid'},
+        ]}
+        onSelect={(item) => setResult(item.label)}
+      />
+    </Box>
+  )
+};
 
 render(<Demo/>);
 ```
